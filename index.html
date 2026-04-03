@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Did U Reboot? | IT Support South Orange County</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  :root{--blue:#1a73e8;--dark:#0f172a;--gray:#64748b;--light:#f8fafc;--green:#10b981;}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:var(--dark);background:#fff;}
+  a{text-decoration:none;color:inherit;}
+
+  /* NAV */
+  nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #e2e8f0;z-index:100;padding:0 24px;}
+  .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px;}
+  .logo{font-size:20px;font-weight:700;color:var(--dark);}
+  .logo span{color:var(--blue);}
+  .nav-links{display:flex;gap:28px;font-size:14px;color:var(--gray);}
+  .nav-links a:hover{color:var(--blue);}
+  .nav-cta{background:var(--blue);color:#fff;padding:8px 20px;border-radius:8px;font-size:14px;font-weight:500;}
+  .nav-cta:hover{background:#1557b0;}
+
+  /* HERO */
+  .hero{min-height:100vh;background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);display:flex;align-items:center;padding:80px 24px 60px;}
+  .hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+  .hero h1{font-size:52px;font-weight:800;color:#fff;line-height:1.15;margin-bottom:20px;}
+  .hero h1 span{color:#60a5fa;}
+  .hero p{font-size:18px;color:#94a3b8;line-height:1.7;margin-bottom:32px;}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn-primary{background:var(--blue);color:#fff;padding:14px 28px;border-radius:10px;font-weight:600;font-size:16px;transition:transform .2s;}
+  .btn-primary:hover{transform:translateY(-2px);}
+  .btn-secondary{background:rgba(255,255,255,0.1);color:#fff;padding:14px 28px;border-radius:10px;font-weight:600;font-size:16px;border:1px solid rgba(255,255,255,0.2);}
+  .hero-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:32px;}
+  .hero-stat{margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,0.1);}
+  .hero-stat:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+  .stat-num{font-size:36px;font-weight:800;color:#60a5fa;}
+  .stat-label{font-size:14px;color:#94a3b8;margin-top:4px;}
+  .badge{display:inline-flex;align-items:center;gap:6px;background:rgba(16,185,129,0.15);color:#10b981;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;margin-bottom:20px;}
+  .badge::before{content:'';width:8px;height:8px;border-radius:50%;background:#10b981;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+
+  /* SERVICES */
+  .services{padding:80px 24px;background:var(--light);}
+  .section-inner{max-width:1100px;margin:0 auto;}
+  .section-title{text-align:center;margin-bottom:56px;}
+  .section-title h2{font-size:38px;font-weight:800;margin-bottom:12px;}
+  .section-title p{font-size:18px;color:var(--gray);}
+  .services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .service-card{background:#fff;border-radius:16px;padding:28px;border:1px solid #e2e8f0;transition:transform .2s,box-shadow .2s;}
+  .service-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.08);}
+  .service-icon{font-size:36px;margin-bottom:16px;}
+  .service-card h3{font-size:18px;font-weight:700;margin-bottom:8px;}
+  .service-card p{font-size:14px;color:var(--gray);line-height:1.6;}
+
+  /* PRICING */
+  .pricing{padding:80px 24px;background:#fff;}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1100px;margin:0 auto;}
+  .price-card{border-radius:20px;padding:36px;border:2px solid #e2e8f0;text-align:center;transition:transform .2s;}
+  .price-card:hover{transform:translateY(-4px);}
+  .price-card.featured{background:var(--dark);color:#fff;border-color:var(--dark);}
+  .price-card.featured .price-sub{color:#94a3b8;}
+  .price-label{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--blue);margin-bottom:12px;}
+  .price-card.featured .price-label{color:#60a5fa;}
+  .price-amount{font-size:52px;font-weight:800;line-height:1;}
+  .price-per{font-size:16px;font-weight:400;color:var(--gray);}
+  .price-card.featured .price-per{color:#94a3b8;}
+  .price-sub{font-size:14px;color:var(--gray);margin:12px 0 24px;}
+  .price-features{list-style:none;text-align:left;margin-bottom:28px;}
+  .price-features li{font-size:14px;padding:8px 0;border-bottom:1px solid #f1f5f9;display:flex;gap:8px;align-items:center;}
+  .price-card.featured .price-features li{border-bottom-color:rgba(255,255,255,0.1);}
+  .check{color:var(--green);font-weight:700;}
+  .price-btn{display:block;padding:13px;border-radius:10px;font-weight:600;font-size:15px;background:var(--blue);color:#fff;transition:opacity .2s;}
+  .price-btn:hover{opacity:.9;}
+  .price-card.featured .price-btn{background:#fff;color:var(--dark);}
+
+  /* WHY US */
+  .why{padding:80px 24px;background:var(--light);}
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+  .why-card{text-align:center;padding:24px;}
+  .why-icon{font-size:40px;margin-bottom:16px;}
+  .why-card h3{font-size:16px;font-weight:700;margin-bottom:8px;}
+  .why-card p{font-size:14px;color:var(--gray);line-height:1.6;}
+
+  /* CONTACT */
+  .contact{padding:80px 24px;background:#fff;}
+  .contact-inner{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .contact-info h2{font-size:36px;font-weight:800;margin-bottom:16px;}
+  .contact-info p{color:var(--gray);line-height:1.7;margin-bottom:32px;}
+  .contact-detail{display:flex;align-items:center;gap:12px;margin-bottom:20px;font-size:15px;}
+  .contact-detail .icon{width:44px;height:44px;background:var(--light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+  form{display:flex;flex-direction:column;gap:16px;}
+  input,textarea{padding:12px 16px;border:1px solid #e2e8f0;border-radius:10px;font-size:15px;font-family:inherit;outline:none;transition:border-color .2s;}
+  input:focus,textarea:focus{border-color:var(--blue);}
+  textarea{height:120px;resize:vertical;}
+  .submit-btn{background:var(--blue);color:#fff;padding:14px;border:none;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;transition:background .2s;}
+  .submit-btn:hover{background:#1557b0;}
+
+  /* FOOTER */
+  footer{background:var(--dark);color:#94a3b8;padding:40px 24px;text-align:center;}
+  footer strong{color:#fff;}
+  .footer-inner{max-width:1100px;margin:0 auto;}
+  .footer-links{display:flex;justify-content:center;gap:24px;margin:16px 0;font-size:14px;}
+  .footer-links a:hover{color:#fff;}
+
+  @media(max-width:768px){
+    .hero-inner,.contact-inner{grid-template-columns:1fr;}
+    .hero h1{font-size:36px;}
+    .services-grid,.pricing-grid,.why-grid{grid-template-columns:1fr;}
+    .hero-card{display:none;}
+    .nav-links{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="logo">Did U <span>Reboot?</span></div>
+    <div class="nav-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#why">Why Us</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <a href="tel:9493450724" class="nav-cta">📞 (949) 345-0724</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="badge">Available in South Orange County</div>
+      <h1>Your IT problems,<br><span>solved today.</span></h1>
+      <p>From home networks to business IT infrastructure — we fix it fast, explain it clearly, and make sure it stays working.</p>
+      <div class="hero-btns">
+        <a href="tel:9493450724" class="btn-primary">📞 Call Now</a>
+        <a href="#services" class="btn-secondary">See Services</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="hero-stat">
+        <div class="stat-num">$100</div>
+        <div class="stat-label">Per hour — transparent, flat rate</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">Same day</div>
+        <div class="stat-label">Response for urgent issues</div>
+      </div>
+      <div class="hero-stat">
+        <div class="stat-num">South OC</div>
+        <div class="stat-label">Ladera Ranch · RSM · Mission Viejo · Irvine</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>What we fix, build & support</h2>
+      <p>No job too small. No problem too complex. We handle it all.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🌐</div>
+        <h3>Network Setup</h3>
+        <p>WiFi optimization, router configuration, mesh networks, VPNs, and full home or office network design.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔒</div>
+        <h3>Security Systems</h3>
+        <p>Camera installation, alarm setup, smart locks, and complete security system configuration for home or business.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💻</div>
+        <h3>Computer Repair</h3>
+        <p>Hardware diagnostics, screen replacement, slow PC cleanup, virus removal, data recovery, and upgrades.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔧</div>
+        <h3>Software Support</h3>
+        <p>OS installation, software setup, troubleshooting, Microsoft 365, and any software issue you're dealing with.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔌</div>
+        <h3>Cabling & Wiring</h3>
+        <p>Ethernet runs, cable management, patch panels, clean professional installations for home or business.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔊</div>
+        <h3>Audio/Visual</h3>
+        <p>Speaker systems, TV mounting, conference room AV, sound systems for homes and businesses.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">☁️</div>
+        <h3>Cloud Services</h3>
+        <p>Google Workspace, Microsoft 365, cloud backups, migration from local to cloud, and ongoing cloud support.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <h3>Business IT Support</h3>
+        <p>Full IT setup for small businesses — workstations, servers, printers, email, and ongoing tech support.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚀</div>
+        <h3>New Device Setup</h3>
+        <p>Got a new computer, phone, or smart device? We'll set it up, transfer your data, and get you running fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>Simple, honest pricing</h2>
+      <p>No hidden fees. No surprises. Just straightforward IT support.</p>
+    </div>
+  </div>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-label">On-Demand</div>
+      <div class="price-amount">$100<span class="price-per">/hr</span></div>
+      <div class="price-sub">Pay as you go — no commitment</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Remote or on-site support</li>
+        <li><span class="check">✓</span> Any device, any issue</li>
+        <li><span class="check">✓</span> Billed in 30-min increments</li>
+        <li><span class="check">✓</span> Same-day availability</li>
+      </ul>
+      <a href="tel:9493450724" class="price-btn">Book a Call</a>
+    </div>
+    <div class="price-card featured">
+      <div class="price-label">Most Popular</div>
+      <div class="price-amount">$350<span class="price-per">/mo</span></div>
+      <div class="price-sub">Small Business Monthly Plan</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> 4 hours of support included</li>
+        <li><span class="check">✓</span> Priority response</li>
+        <li><span class="check">✓</span> Remote monitoring</li>
+        <li><span class="check">✓</span> Discounted hourly rate</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get Started</a>
+    </div>
+    <div class="price-card">
+      <div class="price-label">Project Based</div>
+      <div class="price-amount">Custom</div>
+      <div class="price-sub">Network, cabling & AV installs</div>
+      <ul class="price-features">
+        <li><span class="check">✓</span> Free on-site assessment</li>
+        <li><span class="check">✓</span> Detailed quote upfront</li>
+        <li><span class="check">✓</span> No surprises</li>
+        <li><span class="check">✓</span> Satisfaction guaranteed</li>
+      </ul>
+      <a href="#contact" class="price-btn">Get a Quote</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="section-inner">
+    <div class="section-title">
+      <h2>Why South OC chooses us</h2>
+      <p>Local, reliable, and actually answers the phone.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">⚡</div>
+        <h3>Fast Response</h3>
+        <p>Same-day service for urgent issues. We know downtime costs you money.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🗣️</div>
+        <h3>Plain English</h3>
+        <p>We explain what's wrong and what we did — no confusing tech jargon.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📍</div>
+        <h3>Truly Local</h3>
+        <p>Based in Ladera Ranch. We serve our neighbors in South Orange County.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💯</div>
+        <h3>Satisfaction Guaranteed</h3>
+        <p>If we can't fix it, you don't pay. Simple as that.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info">
+      <h2>Let's solve your tech problem</h2>
+      <p>Reach out by phone, email, or fill out the form. We typically respond within 1 hour during business hours.</p>
+      <div class="contact-detail">
+        <div class="icon">📞</div>
+        <div><strong>(949) 345-0724</strong><br><small style="color:var(--gray)">Call or text anytime</small></div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">📍</div>
+        <div><strong>Ladera Ranch, CA</strong><br><small style="color:var(--gray)">Serving all of South Orange County</small></div>
+      </div>
+      <div class="contact-detail">
+        <div class="icon">🕐</div>
+        <div><strong>Mon–Sat: 8am–7pm</strong><br><small style="color:var(--gray)">Emergency support available</small></div>
+      </div>
+    </div>
+    <form onsubmit="handleSubmit(event)">
+      <input type="text" placeholder="Your name" required>
+      <input type="email" placeholder="Email address" required>
+      <input type="tel" placeholder="Phone number">
+      <input type="text" placeholder="What do you need help with?">
+      <textarea placeholder="Tell us more about your issue..."></textarea>
+      <button type="submit" class="submit-btn">Send Message →</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div style="font-size:20px;font-weight:700;color:#fff;margin-bottom:8px;">Did U Reboot?</div>
+    <p>Your trusted IT partner in South Orange County</p>
+    <div class="footer-links">
+      <a href="#services">Services</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#contact">Contact</a>
+      <a href="tel:9493450724">(949) 345-0724</a>
+    </div>
+    <p style="font-size:13px;margin-top:16px;">© 2026 Did U Reboot? · Ladera Ranch, CA · All rights reserved</p>
+  </div>
+</footer>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  alert('Thanks! We\'ll get back to you within 1 hour.');
+  e.target.reset();
+}
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

@@ -130,22 +130,7 @@ nav{position:fixed;top:0;width:100%;background:rgba(255,255,255,0.95);backdrop-f
 .why-card h3{font-size:16px;font-weight:700;margin-bottom:8px;}
 .why-card p{font-size:14px;color:var(--gray);line-height:1.6;}
 
-/* LIVE CHAT */
-.chat-bubble{position:fixed;bottom:24px;right:24px;z-index:999;}
-.chat-btn{width:60px;height:60px;border-radius:50%;background:var(--blue);color:#fff;border:none;font-size:28px;cursor:pointer;box-shadow:0 4px 20px rgba(26,115,232,0.4);transition:transform .2s;}
-.chat-btn:hover{transform:scale(1.1);}
-.chat-window{position:absolute;bottom:72px;right:0;width:320px;background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(0,0,0,0.15);border:1px solid #e2e8f0;display:none;}
-.chat-window.open{display:block;}
-.chat-header{background:var(--dark);color:#fff;padding:16px 20px;border-radius:16px 16px 0 0;display:flex;align-items:center;gap:12px;}
-.chat-avatar{width:36px;height:36px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;font-size:18px;}
-.chat-header-text h4{font-size:14px;font-weight:600;}
-.chat-header-text p{font-size:12px;color:#94a3b8;}
-.chat-body{padding:16px;height:200px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;}
-.chat-msg{background:var(--light);border-radius:12px 12px 12px 4px;padding:10px 14px;font-size:13px;color:var(--dark);max-width:85%;line-height:1.5;}
-.chat-msg.user{background:var(--blue);color:#fff;border-radius:12px 12px 4px 12px;align-self:flex-end;}
-.chat-input-row{display:flex;gap:8px;padding:12px 16px;border-top:1px solid #e2e8f0;}
-.chat-input{flex:1;padding:8px 12px;border:1px solid #e2e8f0;border-radius:8px;font-size:13px;outline:none;}
-.chat-send{background:var(--blue);color:#fff;border:none;border-radius:8px;padding:8px 14px;cursor:pointer;font-size:13px;}
+
 
 /* CONTACT */
 .contact{padding:80px 24px;background:var(--light);}
@@ -582,27 +567,19 @@ footer{background:var(--dark);color:#94a3b8;padding:40px 24px;text-align:center;
   </div>
 </footer>
 
-<!-- LIVE CHAT -->
-<div class="chat-bubble">
-  <div class="chat-window" id="chatWindow">
-    <div class="chat-header">
-      <div class="chat-avatar">💬</div>
-      <div class="chat-header-text">
-        <h4>Did U Reboot? Support</h4>
-        <p>Typically replies in minutes</p>
-      </div>
-    </div>
-    <div class="chat-body" id="chatBody">
-      <div class="chat-msg">👋 Hi! I'm Bernie. How can I help with your tech issue today?</div>
-      <div class="chat-msg">You can also call/text us at (949) 345-0724 for faster service!</div>
-    </div>
-    <div class="chat-input-row">
-      <input class="chat-input" id="chatInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChat()">
-      <button class="chat-send" onclick="sendChat()">Send</button>
-    </div>
-  </div>
-  <button class="chat-btn" onclick="toggleChat()">💬</button>
-</div>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/69d074128153c41c3b4dd691/1jlb4apv4';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
 
 <script>
 if(window.location.search.includes('submitted=true')){

@@ -512,7 +512,7 @@ footer{background:var(--dark);color:#94a3b8;padding:40px 24px;text-align:center;
     <form action="https://api.web3forms.com/submit" method="POST">
       <input type="hidden" name="access_key" value="e89a9a1e-6f22-4441-a26c-4e97b9af7fa7">
       <input type="hidden" name="subject" value="New Contact from Did U Reboot? Website">
-      <input type="hidden" name="redirect" value="https://didureboot.com">
+      <input type="hidden" name="redirect" value="https://didureboot.com?submitted=true">
       <input type="text" name="name" placeholder="Your name" required>
       <input type="email" name="email" placeholder="Email address" required>
       <input type="tel" name="phone" placeholder="Phone number">
@@ -574,10 +574,16 @@ footer{background:var(--dark);color:#94a3b8;padding:40px 24px;text-align:center;
 </div>
 
 <script>
-function handleSubmit(e){
-  e.preventDefault();
-  alert('Thanks! We\'ll get back to you within 1 hour.');
-  e.target.reset();
+if(window.location.search.includes('submitted=true')){
+  const modal = document.createElement('div');
+  modal.style.cssText='position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;display:flex;align-items:center;justify-content:center;';
+  modal.innerHTML=`<div style="background:#fff;border-radius:20px;padding:48px 40px;max-width:440px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.2);">
+    <div style="font-size:56px;margin-bottom:16px;">✅</div>
+    <h2 style="font-size:24px;font-weight:800;margin-bottom:12px;color:#0f172a;">Message Sent!</h2>
+    <p style="font-size:16px;color:#64748b;line-height:1.6;margin-bottom:28px;">Thank you for reaching out to us!<br>We will contact you within <strong>1 hour</strong>.</p>
+    <button onclick="this.closest('div').parentElement.remove();history.replaceState(null,'',location.pathname)" style="background:#1a73e8;color:#fff;border:none;padding:12px 32px;border-radius:10px;font-size:16px;font-weight:600;cursor:pointer;">Close</button>
+  </div>`;
+  document.body.appendChild(modal);
 }
 
 function toggleFaq(el){

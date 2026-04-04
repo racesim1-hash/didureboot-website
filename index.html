@@ -509,11 +509,14 @@ footer{background:var(--dark);color:#94a3b8;padding:40px 24px;text-align:center;
         <div><strong>Avg. Response: 2 hours</strong><br><small style="color:var(--gray)">We actually pick up the phone</small></div>
       </div>
     </div>
-    <form onsubmit="handleSubmit(event)">
-      <input type="text" placeholder="Your name" required>
-      <input type="email" placeholder="Email address" required>
-      <input type="tel" placeholder="Phone number">
-      <select>
+    <form action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="e89a9a1e-6f22-4441-a26c-4e97b9af7fa7">
+      <input type="hidden" name="subject" value="New Contact from Did U Reboot? Website">
+      <input type="hidden" name="redirect" value="https://didureboot.com">
+      <input type="text" name="name" placeholder="Your name" required>
+      <input type="email" name="email" placeholder="Email address" required>
+      <input type="tel" name="phone" placeholder="Phone number">
+      <select name="service">
         <option value="">What do you need help with?</option>
         <option>Network / WiFi issues</option>
         <option>Computer repair</option>
@@ -524,7 +527,7 @@ footer{background:var(--dark);color:#94a3b8;padding:40px 24px;text-align:center;
         <option>New device setup</option>
         <option>Other</option>
       </select>
-      <textarea placeholder="Tell us more about your issue..."></textarea>
+      <textarea name="message" placeholder="Tell us more about your issue..."></textarea>
       <button type="submit" class="submit-btn">Send Message →</button>
     </form>
   </div>
